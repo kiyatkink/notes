@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/", // Место, где будут создаваться файлы js
+    "noImplicitAny": true, // Когда TS не сможет определить тип, он будет возвращаться к any
+    "module": "esnext", // Устанавливает модульную систему для приложения
+    "target": "es5", // То, в какой ES мы перегоняем наш код. ES6 поддерживается во всех современных браузерах
+    "jsx": "react-jsx", // Управляет созданием конструкций JSX в файлах JS. Это влияет только на файлы JS, которые запускаются в .tsx
+    "allowJs": true, //Разрешает импорты файлов js в проекте, а не только ts
+    "moduleResolution": "node", // Указывает стратегию разрешения модулей
+    "allowSyntheticDefaultImports" : true, // Позволяет писать импорт так "import React from "react";", а не так "import * as React from "react";"
+    "esModuleInterop" : true, // Позволяет избежать проблемы с импортами
+    "baseUrl": "./src",
+    "strict": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS",
+    },
+  }
+}
