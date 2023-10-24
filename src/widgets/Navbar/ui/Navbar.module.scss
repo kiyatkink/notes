@@ -1,0 +1,21 @@
+.Navbar{
+  width: 100%;
+  height: var(--navbar-height);
+  background: var(--inverted-bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.LinkSection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.ThemSwitcher_size {
+  min-width: 40px;
+  min-height: 40px;
+}
