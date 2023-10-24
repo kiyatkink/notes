@@ -43,7 +43,7 @@ jobs:
               ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --network-timeout 1000000 --frozen-lockfile
 
       - name: Build production project
         run: yarn build:prod
