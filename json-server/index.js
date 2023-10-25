@@ -22,6 +22,12 @@ function dateToNumber (stringDate) {
   return date.getTime()
 }
 
+function createNewDate(){
+  const date = new Date()
+  const month = date.getMonth().toString().length === 1 ? `0${date.getMonth()}` : date.getMonth()
+  return `${date.getDate()}.${month}.${date.getFullYear()}`
+}
+
 const articlesOrderType = {
   'ask': (array) => {
     array = array.sort((a, b) => {
@@ -48,7 +54,34 @@ function checkWordInNote (array, _search) {
 }
 
 // Эндпоинт на POST для заметок
-server.post('/notes', (req, res) => {});
+server.post('/notes', (req, res) => {
+  try {
+
+    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+    const { notes = [] } = db;
+    const newId = Number(notes.sort((a, b) => {return b.id - a.id})[0].id) + 1
+    const newNote = {
+      id: `${newId}`,
+      title: 'Новая заметка',
+      createdAt: createNewDate(),
+      text: ''
+    }
+
+    notes.push(newNote)
+
+    fs.writeFile(path.resolve(__dirname, 'db.json'), JSON.stringify(db, null, 4), (error) => {
+      if (error) {
+        console.log('An error has occurred ', error);
+        return;
+      }
+    })
+
+    return res.status(200).json(newNote);
+  } catch (e) {
+    console.log(e);
+    return res.status(403).json({ message: 'Failed add new note' });
+  }
+});
 
 // Эндпоинт на GET для заметок по id
 server.get('/notes/:id', (req, res) => {});

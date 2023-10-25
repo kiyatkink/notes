@@ -8,7 +8,7 @@ const noteListAdapter = createEntityAdapter<Note>({
   selectId: (note) => note.id,
 })
 
-const initialStore: NoteListSchema = {
+export const initialStore: NoteListSchema = {
   isLoading: false,
   error: undefined,
   ids: [],
@@ -30,6 +30,12 @@ export const noteListSlice = createSlice({
     },
     changePage: (state, action: PayloadAction<number>) => {
       state.page = action.payload
+    },
+    updateList: (state) => {
+      noteListAdapter.removeAll(state)
+      state.hasMore = true
+      state.page = 1
+      // noteListAdapter.addOne(state, action.payload)
     },
   },
   extraReducers: (builder) => {

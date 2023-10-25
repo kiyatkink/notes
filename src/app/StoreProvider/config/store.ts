@@ -3,17 +3,18 @@ import { $api } from 'shared/api/api'
 import { Reducer } from 'redux';
 import { noteFiltersReducer } from 'features/NoteFilters';
 import { noteListReducer } from 'widgets/NotesSidebar';
+import { selectedNoteReducer } from 'pages/MainPage';
 import { StoreSchema, StoreWithReducerManager } from '../types/StoreSchema';
 
 export function createReduxStore(
   initialStore?: StoreSchema,
-  asyncReducers?: Partial<Record<keyof StoreSchema, Reducer>>,
 ) {
   const isDev = process.env.MODE === 'development'
 
   const staticReducers: ReducersMapObject<StoreSchema> = {
     filters: noteFiltersReducer,
     noteList: noteListReducer,
+    selectedNote: selectedNoteReducer,
   }
 
   const store: StoreWithReducerManager = configureStore({

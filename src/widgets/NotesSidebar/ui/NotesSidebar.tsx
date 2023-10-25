@@ -1,6 +1,6 @@
 import { FC, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
-import { NoteList } from 'entities/Note';
+import { Note, NoteList } from 'entities/Note';
 import { NoteFilters } from 'features/NoteFilters';
 import { AppButton, AppButtonSizes, AppButtonThems } from 'shared/ui/AppButton/AppButton';
 import { useDebounce } from 'shared/lib/hooks/useDebounc/useDebounce';
@@ -18,9 +18,15 @@ import { fetchNotes } from '../model/services/fetchNotes/fetchNotes';
 
 interface NotesSidebarProps {
     className?: string
+    selectedNote?: Note
+    onSelectNote: (note: Note) => void,
+    createNote: () => void
+    isLoadingCreate: boolean
 }
 export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
-  const { className } = props
+  const {
+    className, selectedNote, onSelectNote, createNote, isLoadingCreate,
+  } = props
   const dispatch = useDispatch()
 
   // NoteList
@@ -47,6 +53,8 @@ export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
         theme={AppButtonThems.PRIMARY}
         size={AppButtonSizes.L}
         className={cls.create_button}
+        onClick={createNote}
+        disabled={isLoadingCreate}
       >
         Создать заметку
       </AppButton>
@@ -59,12 +67,11 @@ export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
               infinityScrollCallback={infinityScrollCallback}
               className={cls.hidden_scroll}
             >
-              {/* eslint-disable-next-line @typescript-eslint/no-empty-function */}
               <NoteList
                 notes={notes}
                 isLoading={isLoadingNotes}
-                selectedNoteId="3"
-                onClickNote={(note) => { console.log(note.id) }}
+                selectedNoteId={selectedNote?.id}
+                onClickNote={onSelectNote}
               />
             </ScrollContainer>
             )

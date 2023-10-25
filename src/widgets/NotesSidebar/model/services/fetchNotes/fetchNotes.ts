@@ -6,7 +6,7 @@ import { getNoteListPage } from '../../selectors/notesListSelectors/notesListSel
 import { noteListActions } from '../../slice/noteListSlice/noteListSlice';
 
 export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<string>>(
-  'notePage/fetchNotes',
+  'MainPage/fetchNotes',
   async (_, thunkAPI) => {
     const {
       rejectWithValue, extra, dispatch, getState,
@@ -33,7 +33,7 @@ export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<string>>
       }
       return response.data
     } catch (e) {
-      return rejectWithValue('error')
+      return rejectWithValue('Не удалось загрузить заметки')
     }
   },
 )

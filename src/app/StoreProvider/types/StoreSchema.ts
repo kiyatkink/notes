@@ -4,11 +4,12 @@ import { CombinedState, Reducer } from 'redux';
 import { AxiosInstance } from 'axios';
 import { NoteFiltersSchema } from 'features/NoteFilters';
 import { NoteListSchema } from 'widgets/NotesSidebar';
+import { SelectedNoteSchema } from 'pages/MainPage';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface StoreSchema {
     noteList: NoteListSchema
-    // selectNote: any
+    selectedNote: SelectedNoteSchema
     filters: NoteFiltersSchema
 }
 
