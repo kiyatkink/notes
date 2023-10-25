@@ -1,0 +1,21 @@
+.NotesSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: calc(100vh - var(--navbar-height));
+  width: 30vw;
+  min-width: 200px;
+  padding: 20px;
+}
+
+.create_button {
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  width: 100%;
+}
+
+.hidden_scroll {
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

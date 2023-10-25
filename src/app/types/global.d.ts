@@ -21,3 +21,7 @@ declare module '*.svg' {
 declare module 'extend-redux' {
     import 'redux-thunk/extend-redux'
 }
+
+interface URLSearchParams {
+    size: number;
+}

@@ -1,6 +1,8 @@
 import { combineReducers, configureStore, ReducersMapObject } from '@reduxjs/toolkit';
 import { $api } from 'shared/api/api'
 import { Reducer } from 'redux';
+import { noteFiltersReducer } from 'features/NoteFilters';
+import { noteListReducer } from 'widgets/NotesSidebar';
 import { StoreSchema, StoreWithReducerManager } from '../types/StoreSchema';
 
 export function createReduxStore(
@@ -10,10 +12,8 @@ export function createReduxStore(
   const isDev = process.env.MODE === 'development'
 
   const staticReducers: ReducersMapObject<StoreSchema> = {
-    // counter: counterReducer,
-    // user: userReducer,
-    // page: pageReducer,
-    // ...asyncReducers,
+    filters: noteFiltersReducer,
+    noteList: noteListReducer,
   }
 
   const store: StoreWithReducerManager = configureStore({

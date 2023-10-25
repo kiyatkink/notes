@@ -1,0 +1,73 @@
+.Text {
+}
+
+// TextSize
+.size_m {
+  .title {
+    font: var(--font-l);
+  }
+
+  .text {
+    font: var(--font-m);
+  }
+}
+
+.size_l {
+  .title {
+    font: var(--font-xl);
+  }
+
+  .text {
+    font: var(--font-l);
+  }
+}
+
+// TextThemes
+
+.primary {
+  .title {
+    color: var(--primary-color)
+  }
+
+  .text {
+    color: var(--secondary-color)
+  }
+}
+
+.error {
+  .title {
+    color: var(--error-color-title)
+  }
+
+  .text {
+    color: var(--error-color-text)
+  }
+}
+
+.inverted {
+  .title {
+    color: var(--inverted-primary-color)
+  }
+
+  .text {
+    color: var(--inverted-secondary-color)
+  }
+}
+
+// TextAlign
+
+.text_left {
+  text-align: left;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.text_right {
+  text-align: right;
+}
+
+.text_justify {
+  text-align: justify;
+}

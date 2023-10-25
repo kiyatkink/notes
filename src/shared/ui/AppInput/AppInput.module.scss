@@ -1,0 +1,34 @@
+.AppInput {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input {
+  outline: none;
+  border: none;
+  background: none;
+  text-rendering: auto;
+  color: var(--primary-color);
+  text-shadow: none;
+  appearance: none;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  width: 100%;
+}
+
+.input_wrapper {
+  flex-grow: 1;
+}
+
+.m {
+  font: var(--font-m)
+}
+
+.l {
+  font: var(--font-l);
+}
+
+.xl {
+  font: var(--font-xl);
+}
