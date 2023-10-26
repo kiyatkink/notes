@@ -54,6 +54,10 @@
     "start:dev": "concurrently \"yarn start\" \"yarn json-server:start\"",
     "build:prod": "webpack --env mode=prod",
     "build:dev": "webpack --env mode=dev",
-    "json-server:start": "node ./json-server/index.js"
+    "json-server:start": "node ./json-server/index.js",
+    "eslint": "eslint .",
+    "eslint:fix": "eslint . --fix",
+    "stylelint": "stylelint \"**/*.scss\"",
+    "stylelint:fix": "stylelint \"**/*.scss\" --fix"
   }
 }
