@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { NotesSidebar } from 'widgets/NotesSidebar';
 import { NoteEditor } from 'widgets/NoteEditor';
@@ -20,7 +20,7 @@ interface MainPageProps {
     className?: string
 }
 
-const MainPage: FC<MainPageProps> = (props) => {
+const MainPage: FC<MainPageProps> = memo((props: MainPageProps) => {
   const { className } = props
 
   const dispatch = useDispatch()
@@ -89,6 +89,6 @@ const MainPage: FC<MainPageProps> = (props) => {
       )}
     </div>
   );
-};
+});
 
 export default MainPage

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Text, TextSize, TextThemes } from 'shared/ui/Text/Text';
 import cls from './NoteListItem.module.scss'
@@ -11,7 +11,7 @@ interface NoteListItemProps {
     onSelectNote: () => void
 }
 
-export const NoteListItem: FC<NoteListItemProps> = (props) => {
+export const NoteListItem: FC<NoteListItemProps> = memo((props: NoteListItemProps) => {
   const {
     className, title, text, selected = false, onSelectNote,
   } = props
@@ -26,4 +26,4 @@ export const NoteListItem: FC<NoteListItemProps> = (props) => {
       <Text text={text} size={TextSize.M} theme={selected ? TextThemes.INVERTED : TextThemes.PRIMARY} />
     </div>
   );
-};
+});

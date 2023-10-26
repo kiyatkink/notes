@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppButton, AppButtonSizes, AppButtonThems } from 'shared/ui/AppButton/AppButton';
 import cls from './EditorHeader.module.scss'
@@ -13,7 +13,7 @@ interface EditorHeaderProps {
     onCancel: () => void
 }
 
-export const EditorHeader: FC<EditorHeaderProps> = (props) => {
+export const EditorHeader: FC<EditorHeaderProps> = memo((props: EditorHeaderProps) => {
   const {
     className, isEdit, onEdit, onDelete, onSave, onCancel, isLoading,
   } = props
@@ -65,4 +65,4 @@ export const EditorHeader: FC<EditorHeaderProps> = (props) => {
       </AppButton>
     </div>
   );
-};
+});

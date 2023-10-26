@@ -1,5 +1,5 @@
 import {
-  FC, useCallback, useEffect, useLayoutEffect, useState,
+  FC, memo, useCallback,
 } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { AppInput, AppInputSize } from 'shared/ui/AppInput/AppInput';
@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Select } from 'shared/ui/Select/Select';
 import cls from './NoteFilters.module.scss'
 import {
-  getNoteFilters,
   getNoteFiltersOrder,
   getNoteFiltersSearch,
 } from '../../model/selectors/noteFiltersSelectors/noteFiltersSelectors';
@@ -30,13 +29,12 @@ const orderOptions = [
   },
 ]
 
-export const NoteFilters: FC<NoteFiltersProps> = (props) => {
+export const NoteFilters: FC<NoteFiltersProps> = memo((props: NoteFiltersProps) => {
   const { className, updateNoteList } = props
   const dispatch = useDispatch()
 
   const order = useSelector(getNoteFiltersOrder)
   const search = useSelector(getNoteFiltersSearch)
-  const noteFilters = useSelector(getNoteFilters)
 
   const changeSearch = useCallback((value: string) => {
     dispatch(noteFiltersActions.changeSearch(value))
@@ -54,4 +52,4 @@ export const NoteFilters: FC<NoteFiltersProps> = (props) => {
       <Select placeholder="Сортировать по" onChange={changeOrder} options={orderOptions} value={order} />
     </div>
   );
-};
+});

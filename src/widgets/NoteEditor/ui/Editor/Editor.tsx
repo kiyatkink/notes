@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Note } from 'entities/Note';
 import { AppInput, AppInputSize } from 'shared/ui/AppInput/AppInput';
@@ -13,7 +13,7 @@ interface EditorProps {
     changeText: (value: string) => void,
 }
 
-export const Editor: FC<EditorProps> = (props) => {
+export const Editor: FC<EditorProps> = memo((props: EditorProps) => {
   const {
     className, note, isEdit, changeTitle, changeText,
   } = props
@@ -37,4 +37,4 @@ export const Editor: FC<EditorProps> = (props) => {
       />
     </div>
   );
-};
+});

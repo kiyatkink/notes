@@ -1,5 +1,1 @@
-import { ErrorPage } from './ui/ErrorPage';
-
-export {
-  ErrorPage,
-}
+export { ErrorPageAsync as ErrorPage } from './ui/ErrorPage.async';

@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Note, NoteList } from 'entities/Note';
 import { NoteFilters } from 'features/NoteFilters';
@@ -25,7 +25,7 @@ interface NotesSidebarProps {
     isLoadingCreate: boolean
     error: string | undefined
 }
-export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
+export const NotesSidebar: FC<NotesSidebarProps> = memo((props: NotesSidebarProps) => {
   const {
     className, selectedNote, onSelectNote, createNote, isLoadingCreate, error,
   } = props
@@ -81,4 +81,4 @@ export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
         }
     </div>
   );
-};
+});

@@ -1,11 +1,11 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Note } from 'entities/Note';
+import { ServerErrors } from 'shared/consts/serverErrorsMapper';
+import { Text, TextAlign, TextThemes } from 'shared/ui/Text/Text';
 import cls from './NoteEditor.module.scss'
 import { EditorHeader } from '../EditorHeader/EditorHeader';
 import { Editor } from '../Editor/Editor';
-import { ServerErrors } from '../../../../shared/consts/serverErrorsMapper';
-import { Text, TextAlign, TextThemes } from '../../../../shared/ui/Text/Text';
 
 interface NoteEditorProps {
     className?: string
@@ -21,7 +21,7 @@ interface NoteEditorProps {
     error: string | undefined
 }
 
-export const NoteEditor: FC<NoteEditorProps> = (props) => {
+export const NoteEditor: FC<NoteEditorProps> = memo((props: NoteEditorProps) => {
   const {
     className,
     note,
@@ -60,4 +60,4 @@ export const NoteEditor: FC<NoteEditorProps> = (props) => {
       />
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import { Skeleton } from 'shared/ui/Skeleton/Skeleton';
 import cls from './NoteSkeletonListItem.module.scss'
@@ -7,7 +7,7 @@ interface NoteSkeletonListItemProps {
     className?: string
 }
 
-export const NoteSkeletonListItem: FC<NoteSkeletonListItemProps> = (props) => {
+export const NoteSkeletonListItem: FC<NoteSkeletonListItemProps> = memo((props: NoteSkeletonListItemProps) => {
   const { className } = props
 
   return (
@@ -16,4 +16,4 @@ export const NoteSkeletonListItem: FC<NoteSkeletonListItemProps> = (props) => {
       <Skeleton width="70%" height="24px" borderRadius="5px" />
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { FC, useCallback } from 'react';
+import { FC, memo, useCallback } from 'react';
 import { classNames } from 'shared/lib/classNames/classNames';
 import cls from './NoteList.module.scss'
 import { Note } from '../../model/types/note';
@@ -13,7 +13,7 @@ interface NoteListProps {
     onClickNote: (note: Note) => void,
 }
 
-export const NoteList: FC<NoteListProps> = (props) => {
+export const NoteList: FC<NoteListProps> = memo((props: NoteListProps) => {
   const {
     className, notes, isLoading, selectedNoteId, onClickNote,
   } = props
@@ -42,4 +42,4 @@ export const NoteList: FC<NoteListProps> = (props) => {
       { isLoading && renderSkeletonFunction() }
     </div>
   );
-};
+});
