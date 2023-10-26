@@ -20,7 +20,7 @@ export const NoteList: FC<NoteListProps> = memo((props: NoteListProps) => {
 
   const onSelectNote = useCallback((note: Note) => () => onClickNote(note), [onClickNote])
 
-  const renderSkeletonFunction = useCallback(() => new Array(5).fill(0).map(
+  const renderSkeletonFunction = useCallback(() => new Array(10).fill(0).map(
     (el, idx) => <NoteSkeletonListItem key={idx} />,
   ), [])
 

@@ -14,7 +14,7 @@ export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<ServerEr
     } = thunkAPI
     try {
       const page = getNoteListPage(getState() as StoreSchema)
-      const limit = 5
+      const limit = 10
       const { search, order } = getNoteFilters(getState() as StoreSchema)
 
       const response = await extra.api.get<Note[]>('/notes', {
