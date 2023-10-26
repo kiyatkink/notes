@@ -1,0 +1,39 @@
+.AppTextarea {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.textarea {
+  outline: none;
+  border: 1px solid var(--primary-color);
+  background: none;
+  text-rendering: auto;
+  color: var(--primary-color);
+  text-shadow: none;
+  appearance: none;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  width: 100%;
+  padding: 20px;
+}
+
+.textarea_wrapper {
+  flex-grow: 1;
+}
+
+.resize_non {
+  resize: none;
+}
+
+.m {
+  font: var(--font-m)
+}
+
+.l {
+  font: var(--font-l);
+}
+
+.xl {
+  font: var(--font-xl);
+}

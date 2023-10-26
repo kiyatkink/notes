@@ -4,21 +4,21 @@ import { Note } from 'entities/Note';
 import { noteListActions } from 'widgets/NotesSidebar';
 import { ServerErrors } from 'shared/consts/serverErrorsMapper';
 
-export const createNote = createAsyncThunk<Note, void, ThunkApiConfig<ServerErrors>>(
-  'MainPage/createNote',
-  async (_, thunkAPI) => {
+export const saveNote = createAsyncThunk<Note, Note, ThunkApiConfig<ServerErrors>>(
+  'MainPage/saveNote',
+  async (note, thunkAPI) => {
     const {
       rejectWithValue, extra, dispatch,
     } = thunkAPI
     try {
-      const response = await extra.api.post<Note>('/notes')
+      const response = await extra.api.put<Note>(`/notes/${note.id}`, note)
       if (!response.data) {
         throw new Error()
       }
-      dispatch(noteListActions.updateList())
+      dispatch(noteListActions.updateNote(note))
       return response.data
     } catch (e) {
-      return rejectWithValue(ServerErrors.FAILED_TO_CREATE_NOTE)
+      return rejectWithValue(ServerErrors.FAILED_TO_SAVE_NOTE)
     }
   },
 )

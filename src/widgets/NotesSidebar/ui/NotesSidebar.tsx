@@ -7,6 +7,7 @@ import { useDebounce } from 'shared/lib/hooks/useDebounc/useDebounce';
 import { ScrollContainer } from 'shared/ui/ScrollContainer/ScrollContainer';
 import { useDispatch, useSelector } from 'react-redux';
 import { Text, TextThemes } from 'shared/ui/Text/Text';
+import { ServerErrors } from 'shared/consts/serverErrorsMapper';
 import cls from './NotesSidebar.module.scss'
 import { noteListActions, noteListSelectors } from '../model/slice/noteListSlice/noteListSlice';
 import {
@@ -22,10 +23,11 @@ interface NotesSidebarProps {
     onSelectNote: (note: Note) => void,
     createNote: () => void
     isLoadingCreate: boolean
+    error: string | undefined
 }
 export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
   const {
-    className, selectedNote, onSelectNote, createNote, isLoadingCreate,
+    className, selectedNote, onSelectNote, createNote, isLoadingCreate, error,
   } = props
   const dispatch = useDispatch()
 
@@ -58,6 +60,7 @@ export const NotesSidebar: FC<NotesSidebarProps> = (props) => {
       >
         Создать заметку
       </AppButton>
+      { error === ServerErrors.FAILED_TO_CREATE_NOTE ? <Text text={error} theme={TextThemes.ERROR} /> : <></>}
       <NoteFilters updateNoteList={updateNoteList} />
       {
         errorNotesFetch

@@ -53,7 +53,6 @@ function checkWordInNote (array, _search) {
   return array
 }
 
-// Эндпоинт на POST для заметок
 server.post('/notes', (req, res) => {
   try {
 
@@ -83,10 +82,66 @@ server.post('/notes', (req, res) => {
   }
 });
 
-// Эндпоинт на GET для заметок по id
-server.get('/notes/:id', (req, res) => {});
+server.delete('/notes/:id', (req, res) => {
+  try {
+    const { id } = req.params
 
-// Эндпоинт на GET для всех заметок
+    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+
+    let { notes = [] } = db;
+
+    let deletedNote = notes.find((el) => el.id === id)
+
+    notes = notes.filter((el) => el.id !== id);
+
+    const newDB = { notes }
+
+    fs.writeFile(path.resolve(__dirname, 'db.json'), JSON.stringify(newDB, null, 4), (error) => {
+      if (error) {
+        console.log('An error has occurred ', error);
+        return;
+      }
+    })
+
+    return res.json(deletedNote);
+  } catch (e) {
+    console.log(e);
+    return res.status(403).json({ message: 'Failed to delete note' });
+  }
+});
+
+server.put('/notes/:id', (req, res) => {
+  try {
+    const { id } = req.params
+    const note= req.body;
+
+    const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
+
+    let { notes = [] } = db;
+
+    notes = notes.map((el) => {
+      if(el.id === id){
+        return note
+      }
+      return el
+    });
+
+    const newDB = { notes }
+
+    fs.writeFile(path.resolve(__dirname, 'db.json'), JSON.stringify(newDB, null, 4), (error) => {
+      if (error) {
+        console.log('An error has occurred ', error);
+        return;
+      }
+    })
+
+    return res.json(note);
+  } catch (e) {
+    console.log(e);
+    return res.status(403).json({ message: 'Failed to delete note' });
+  }
+});
+
 server.get('/notes', (req, res) => {
   const { _page, _limit, _order = 'desk', _search } = req.query
 

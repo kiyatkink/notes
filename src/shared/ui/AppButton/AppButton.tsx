@@ -6,6 +6,7 @@ export enum AppButtonThems {
     INVERTED = 'inverted',
     PRIMARY = 'primary',
     OUTLINE = 'outline',
+    OUTLINE_RED = 'outline_red',
 }
 
 export enum AppButtonSizes {

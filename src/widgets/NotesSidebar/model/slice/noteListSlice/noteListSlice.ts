@@ -35,7 +35,15 @@ export const noteListSlice = createSlice({
       noteListAdapter.removeAll(state)
       state.hasMore = true
       state.page = 1
-      // noteListAdapter.addOne(state, action.payload)
+    },
+    deleteNote: (state, action: PayloadAction<string>) => {
+      noteListAdapter.removeOne(state, action.payload)
+    },
+    updateNote: (state, action: PayloadAction<Note>) => {
+      noteListAdapter.updateOne(state, {
+        id: action.payload.id,
+        changes: action.payload,
+      })
     },
   },
   extraReducers: (builder) => {

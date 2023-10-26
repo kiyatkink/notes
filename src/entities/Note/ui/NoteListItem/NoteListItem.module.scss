@@ -22,4 +22,8 @@
 
 .selected {
   background-color: var(--inverted-bg-color);
+  &:hover {
+    opacity: 1;
+    cursor: auto;
+  }
 }

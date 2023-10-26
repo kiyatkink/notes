@@ -2,10 +2,11 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { StoreSchema, ThunkApiConfig } from 'app/StoreProvider/types/StoreSchema';
 import { Note } from 'entities/Note';
 import { getNoteFilters } from 'features/NoteFilters';
+import { ServerErrors } from 'shared/consts/serverErrorsMapper';
 import { getNoteListPage } from '../../selectors/notesListSelectors/notesListSelectors';
 import { noteListActions } from '../../slice/noteListSlice/noteListSlice';
 
-export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<string>>(
+export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<ServerErrors>>(
   'MainPage/fetchNotes',
   async (_, thunkAPI) => {
     const {
@@ -33,7 +34,7 @@ export const fetchNotes = createAsyncThunk<Note[], void, ThunkApiConfig<string>>
       }
       return response.data
     } catch (e) {
-      return rejectWithValue('Не удалось загрузить заметки')
+      return rejectWithValue(ServerErrors.FAILED_TO_FETCH_NOTES)
     }
   },
 )

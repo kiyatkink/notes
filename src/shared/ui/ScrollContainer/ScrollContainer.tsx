@@ -26,7 +26,7 @@ export const ScrollContainer: FC<ScrollContainerProps> = (props: ScrollContainer
       root: rootRef as MutableRefObject<Element>,
       target: targetRef as MutableRefObject<Element>,
       callback: infinityScrollCallback,
-      rootMargin: '0px 10px',
+      rootMargin: '10px 10px',
     }
   ), [infinityScrollCallback])
 
