@@ -58,7 +58,15 @@ server.post('/notes', (req, res) => {
 
     const db = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'db.json'), 'UTF-8'));
     const { notes = [] } = db;
-    const newId = Number(notes.sort((a, b) => {return b.id - a.id})[0].id) + 1
+
+    let newId
+
+    if (notes.length){
+      newId = Number(notes.sort((a, b) => {return b.id - a.id})[0].id) + 1
+    } else {
+      newId = 0
+    }
+
     const newNote = {
       id: `${newId}`,
       title: 'Новая заметка',
